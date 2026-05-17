@@ -3,55 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的第一个 GitHub Pages 网站</title>
+    <title>风火遥控飞机 | 儿童玩具推广</title>
     <style>
-        /* 全局样式，让页面更干净 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
+            font-family: "Microsoft YaHei", "Arial", sans-serif;
         }
 
-        /* 页面背景和居中布局 */
         body {
-            background-color: #f0f8ff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background: linear-gradient(180deg, #e0f7ff 0%, #ffffff 55%, #f4f7ff 100%);
+            color: #1f2d3d;
             min-height: 100vh;
-            padding: 20px;
+            overflow-x: hidden;
         }
 
-        /* 标题样式 */
-        h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        /* 段落样式 */
-        p {
-            color: #34495e;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            max-width: 600px;
+        header {
+            padding: 40px 20px 20px;
             text-align: center;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            line-height: 1.05;
+            color: #0d3556;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            max-width: 560px;
+        }
+
+        .hero-text .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: #ff8c42;
+            color: white;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .hero-text .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(255, 140, 66, 0.25);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(255,140,66,0.16) 0%, rgba(255,140,66,0) 70%);
+            border-radius: 50%;
+            top: -40px;
+            left: 10%;
+        }
+
+        .plane-card {
+            width: min(100%, 460px);
+            border-radius: 36px;
+            padding: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .plane-card img {
+            width: 100%;
+            border-radius: 24px;
+            display: block;
+        }
+
+        .feature-list {
+            margin-top: 24px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .feature-item span {
+            width: 40px;
+            height: 40px;
+            background: #ffd6a4;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-weight: bold;
+            color: #d65a00;
+            flex-shrink: 0;
+        }
+
+        .feature-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        main {
+            padding-bottom: 40px;
+        }
+
+        .sections {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            gap: 36px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .section-card h2 {
+            font-size: 1.8rem;
+            color: #102a43;
+            margin-bottom: 16px;
+        }
+
+        .section-card p {
+            color: #475569;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .small-card {
+            padding: 22px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #e8f7ff 0%, #f9fcff 100%);
+            border: 1px solid rgba(16, 56, 103, 0.08);
+        }
+
+        .small-card h3 {
+            margin-bottom: 14px;
+            color: #0f172a;
+            font-size: 1.2rem;
+        }
+
+        .small-card p {
+            color: #475569;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        footer {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+            color: #475569;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        @media (max-width: 860px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .hero-image::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+
+            .hero-text p {
+                font-size: 1.05rem;
+            }
+
+            .hero-text .btn {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>你好，世界！👋</h1>
-    <p>
-        这是我的第一个 GitHub Pages 网页！<br>
-        我学会了用 VS Code + Git + GitHub 管理代码，还能把网页发布到网上啦~<br>
-        以后我会在这里写更多有趣的内容！
-    </p>
+    <header>
+        <div class="hero">
+            <div class="hero-text">
+                <h1>风火遥控飞机<br>点燃孩子的天空冒险</h1>
+                <p>适合 4-12 岁儿童的超稳飞行遥控飞机，拥有智能防撞、长续航和轻松操控。让每一次起飞都充满惊喜与安全。</p>
+                <a href="#features" class="btn">立即探索</a>
+            </div>
+            <div class="hero-image">
+                <div class="plane-card">
+                    <img src="https://images.unsplash.com/photo-1516515429571-6fde78162f70?auto=format&fit=crop&w=900&q=80" alt="儿童遥控飞机">
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span>✓</span>
+                            <p>轻巧耐摔机身，适合室内外双场景飞行。</p>
+                        </div>
+                        <div class="feature-item">
+                            <span>✓</span>
+                            <p>一键起降与定点悬停，初学者也能快速上手。</p>
+                        </div>
+                        <div class="feature-item">
+                            <span>✓</span>
+                            <p>USB 充电、30 分钟续航，陪伴更多快乐时光。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="sections" id="features">
+            <section class="section-card">
+                <h2>孩子最想要的遥控飞机</h2>
+                <p>“风火”遥控飞机为孩子打造安全、好玩的飞行体验。无论是做为生日礼物还是亲子互动玩具，它都能快速成为孩子的最爱。</p>
+                <div class="cards">
+                    <div class="small-card">
+                        <h3>超强稳定</h3>
+                        <p>内置六轴陀螺仪，自动校准飞行姿态，降低翻转风险，飞行更平稳。</p>
+                    </div>
+                    <div class="small-card">
+                        <h3>智能操控</h3>
+                        <p>配备简单手柄与重力感应模式，轻触即可前进、后退、左转、右转。</p>
+                    </div>
+                    <div class="small-card">
+                        <h3>安全设计</h3>
+                        <p>柔软防撞叶片与护框设计，有效保护孩子和家具，玩得更安心。</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section-card">
+                <h2>买家热评</h2>
+                <p>“孩子一见到飞机就爱不释手，操作简单又耐摔，周末全家一起飞了好几个小时！”</p>
+            </section>
+            <section class="section-card">
+                <h2>产品亮点</h2>
+                <div class="cards">
+                    <div class="small-card">
+                        <h3>长续航</h3>
+                        <p>标配电池支持 30 分钟持续飞行，充电 40 分钟即可恢复出发。</p>
+                    </div>
+                    <div class="small-card">
+                        <h3>远程距离</h3>
+                        <p>有效遥控距离可达 60 米，户外飞行自由无束缚。</p>
+                    </div>
+                    <div class="small-card">
+                        <h3>环保材质</h3>
+                        <p>采用无毒工程塑料，符合儿童玩具安全标准，耐用又放心。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>© 2026 风火玩具 | 儿童探索飞行乐趣，陪伴每一次启航。</p>
+    </footer>
 </body>
 </html>
