@@ -3,78 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>猜数字小游戏</title>
+    <title>多功能猜数字游戏</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{
             background:#16213e;
             color:#fff;
             text-align:center;
-            padding-top:80px;
+            padding-top:60px;
             font-family:微软雅黑;
         }
         .box{
             width:90%;
-            max-width:400px;
+            max-width:420px;
             margin:0 auto;
             background:#0f3460;
-            padding:40px 20px;
+            padding:35px 25px;
             border-radius:15px;
         }
-        input{
+        select,input{
             width:80%;
             padding:12px;
-            font-size:18px;
+            font-size:17px;
             border:none;
             border-radius:8px;
-            margin:20px 0;
+            margin:12px 0;
             text-align:center;
         }
         button{
-            padding:12px 30px;
-            font-size:18px;
+            padding:11px 18px;
+            font-size:16px;
             background:#e94560;
             color:white;
             border:none;
             border-radius:8px;
             cursor:pointer;
+            margin:6px;
         }
         button:hover{opacity:0.9;}
-        #tip{font-size:20px;margin:20px 0;}
+        #tip{font-size:20px;margin:18px 0;}
+        .info{margin:8px 0;color:#ccc;}
+        .best{color:#ffd700;margin:10px 0;}
+        .back{
+            margin-top:25px;
+            display:inline-block;
+            color:#88b8ff;
+            text-decoration:none;
+        }
+        /* 弹窗样式 */
+        .modal{
+            display:none;
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            background:rgba(0,0,0,0.7);
+            justify-content:center;
+            align-items:center;
+        }
+        .modal-content{
+            background:#fff;
+            color:#222;
+            padding:40px 30px;
+            border-radius:12px;
+            font-size:22px;
+        }
+        .modal button{margin-top:20px;}
     </style>
 </head>
 <body>
     <div class="box">
-        <h2>猜数字游戏</h2>
-        <p>系统随机生成 1~100 数字</p>
-        <input type="number" id="num" placeholder="输入你猜的数字">
+        <h2>趣味猜数字</h2>
+        <p class="best">🏆 最快纪录：<span id="bestScore">暂无</span> 次</p>
+
+        <p>选择游戏难度</p>
+        <select id="level">
+            <option value="50">简单 1~50</option>
+            <option value="100" selected>普通 1~100</option>
+            <option value="150">困难 1~150</option>
+            <option value="200">地狱 1~200</option>
+        </select>
+
+        <p class="info">已猜次数：<span id="count">0</span> / 最多8次</p>
+        <p class="info">提示区间：<span id="range">1 ~ 100</span></p>
+
+        <input type="number" id="num" placeholder="输入猜测数字">
         <br>
-        <button onclick="guess()">开始猜测</button>
-        <p id="tip">快来猜猜看吧！</p>
+        <button onclick="startGame()">确定难度开局</button>
+        <button onclick="guess()">确认猜测</button>
+        <button onclick="resetGame()">重新开始</button>
+        
+        <p id="tip">先选择难度，点击开局</p>
+        <a href="index.html" class="back">← 返回个人主页</a>
+    </div>
+
+    <!-- 猜对庆祝弹窗 -->
+    <div class="modal" id="winModal">
+        <div class="modal-content">
+            <h3>🎉 恭喜猜对啦！</h3>
+            <p id="winText"></p>
+            <button onclick="closeModal()">确定</button>
+        </div>
     </div>
 
 <script>
-// 1. 生成1-100随机数
-let randomNum = Math.floor(Math.random()*100)+1;
+let randomNum = 0;
+let count = 0;
+let maxTry = 8; // 最多8次
+let minNum = 1;
+let maxNum = 100;
+let bestRecord = null; // 最快记录
 
+// 开局生成数字
+function startGame(){
+    let top = parseInt(document.getElementById('level').value);
+    minNum = 1;
+    maxNum = top;
+    randomNum = Math.floor(Math.random() * top) + 1;
+    count = 0;
+    document.getElementById('count').innerText = 0;
+    document.getElementById('range').innerText = `${minNum} ~ ${maxNum}`;
+    document.getElementById('num').value = "";
+    document.getElementById('tip').innerText = `游戏已开启，范围1~${top}，最多猜8次！`;
+}
+
+// 猜测逻辑
 function guess(){
-    // 2. 获取输入框数字
-    let userNum = document.getElementById('num').value;
+    let userNum = parseInt(document.getElementById('num').value);
     let tip = document.getElementById('tip');
+    let countDom = document.getElementById('count');
+    let rangeDom = document.getElementById('range');
 
-    if(userNum == ""){
-        tip.innerText = "请输入数字！";
+    if(isNaN(userNum)){
+        tip.innerText = "请输入有效数字！";
+        return;
+    }
+    count++;
+    countDom.innerText = count;
+
+    // 次数用完失败
+    if(count >= maxTry && userNum !== randomNum){
+        tip.innerText = `次数用完！正确答案是：${randomNum}`;
         return;
     }
 
-    // 3. 判断逻辑
     if(userNum > randomNum){
-        tip.innerText = "太大啦，往小猜猜";
+        tip.innerText = "数字偏大，往小猜";
+        maxNum = userNum - 1;
     }else if(userNum < randomNum){
-        tip.innerText = "太小啦，往大猜猜";
+        tip.innerText = "数字偏小，往大猜";
+        minNum = userNum + 1;
     }else{
-        tip.innerText = "🎉恭喜你猜对了！";
+        // 猜对触发弹窗
+        tip.innerText = "答对啦！";
+        showWinModal(count);
+        // 更新最快记录
+        if(bestRecord === null || count < bestRecord){
+            bestRecord = count;
+            document.getElementById('bestScore').innerText = bestRecord;
+        }
+        return;
     }
+    rangeDom.innerText = `${minNum} ~ ${maxNum}`;
+}
+
+// 弹出庆祝窗口
+function showWinModal(c){
+    document.getElementById('winText').innerText = `你只用了 ${c} 次就猜对啦！`;
+    document.getElementById('winModal').style.display = 'flex';
+}
+
+// 关闭弹窗
+function closeModal(){
+    document.getElementById('winModal').style.display = 'none';
+    setTimeout(startGame,500);
+}
+
+// 全盘重置
+function resetGame(){
+    count = 0;
+    document.getElementById('count').innerText = 0;
+    document.getElementById('num').value = "";
+    document.getElementById('tip').innerText = "已重置，请先选择难度开局";
 }
 </script>
 </body>
