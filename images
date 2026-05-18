@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外贸货源工厂 | 产品定制批发</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑,sans-serif;}
+        body{background:#f4f4f4;color:#333;line-height:1.6;}
+        header{background:#222;color:#fff;padding:15px 0;text-align:center;}
+        nav{background:#444;padding:12px 0;text-align:center;}
+        nav a{color:#fff;text-decoration:none;margin:0 15px;font-size:16px;}
+        nav a:hover{color:#00bfff;}
+        .container{max-width:1200px;margin:30px auto;padding:0 20px;}
+        .banner{width:100%;height:300px;background:#0088cc;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;margin-bottom:40px;}
+        .about{background:#fff;padding:30px;border-radius:10px;margin-bottom:40px;}
+        h2{margin-bottom:20px;color:#222;border-left:5px solid #0088cc;padding-left:10px;}
+        .product-list{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
+        .product-item{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px #ddd;}
+        .product-item img{width:100%;height:220px;object-fit:cover;}
+        .product-text{padding:15px;}
+        .product-text h3{margin-bottom:8px;}
+        .contact{background:#fff;padding:30px;border-radius:10px;margin:40px 0;}
+        footer{text-align:center;padding:20px;background:#222;color:#fff;margin-top:50px;}
+        /* 手机适配 */
+        @media(max-width:768px){
+            .product-list{grid-template-columns:1fr;}
+            .banner{height:200px;font-size:20px;}
+        }
+    </style>
+</head>
+<body>
+    <!-- 网站头部 -->
+    <header>
+        <h1>源头工厂 · 外贸定制批发</h1>
+        <p>专业生产各类硅胶制品 | OEM/ODM一站式定制</p>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav>
+        <a href="#home">首页</a>
+        <a href="#about">工厂简介</a>
+        <a href="#product">产品展示</a>
+        <a href="#contact">联系我们</a>
+    </nav>
+
+    <div class="container">
+        <!-- 首页横幅 -->
+        <div class="banner" id="home">
+            诚信经营 品质为先 全球接单
+        </div>
+
+        <!-- 工厂简介 -->
+        <div class="about" id="about">
+            <h2>工厂实力简介</h2>
+            <p>本厂坐落于产业聚集地，拥有成熟生产线，专注硅胶类产品研发、生产、加工、定制。支持来图开模、来样定做、LOGO印刷，支持跨境电商、外贸大单、海外商超供货，出货快、品质稳、价格优势大，长期承接国内外订单，欢迎海内外客商洽谈合作！</p>
+            <br>
+            <p>主营范围：各类成人情趣用品、硅胶生活用品、创意硅胶配件等，可根据客户市场需求调整款式与功能，支持多语种资料对接海外客户。</p>
+        </div>
+
+        <!-- 产品展示区 -->
+        <h2 id="product">热门产品展示</h2>
+        <div class="product-list">
+            <!-- 产品1 -->
+            <div class="product-item">
+                <img src="pro1.png" alt="产品1">
+                <div class="product-text">
+                    <h3>多功能震动系列</h3>
+                    <p>食品级安全硅胶，多档位调节，外贸爆款，热销欧美东南亚市场</p>
+                </div>
+            </div>
+            <!-- 产品2 -->
+            <div class="product-item">
+                <img src="pro2.png" alt="产品2">
+                <div class="product-text">
+                    <h3>便携随身款式</h3>
+                    <p>小巧易收纳，做工精细，款式多样，支持批量定制外观颜色</p>
+                </div>
+            </div>
+            <!-- 产品3 -->
+            <div class="product-item">
+                <img src="pro3.png" alt="产品3">
+                <div class="product-text">
+                    <h3>情侣互动套装</h3>
+                    <p>组合套装出货，性价比高，适合跨境店铺批量铺货</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="contact" id="contact">
+            <h2>商务合作联系方式</h2>
+            <p>微信/WhatsApp：填入你的账号</p>
+            <p>邮箱：填入你的外贸邮箱</p>
+            <p>领英LinkedIn：填入你的海外社交账号</p>
+            <p>接单范围：全球各国外贸订单，大小单均可承接</p>
+        </div>
+    </div>
+
+    <!-- 底部版权 -->
+    <footer>
+        © 2026 工厂外贸独立站  All Rights Reserved
+    </footer>
+</body>
+</html>
