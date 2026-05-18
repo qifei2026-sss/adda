@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字小游戏</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            background:#16213e;
+            color:#fff;
+            text-align:center;
+            padding-top:80px;
+            font-family:微软雅黑;
+        }
+        .box{
+            width:90%;
+            max-width:400px;
+            margin:0 auto;
+            background:#0f3460;
+            padding:40px 20px;
+            border-radius:15px;
+        }
+        input{
+            width:80%;
+            padding:12px;
+            font-size:18px;
+            border:none;
+            border-radius:8px;
+            margin:20px 0;
+            text-align:center;
+        }
+        button{
+            padding:12px 30px;
+            font-size:18px;
+            background:#e94560;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+        button:hover{opacity:0.9;}
+        #tip{font-size:20px;margin:20px 0;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>猜数字游戏</h2>
+        <p>系统随机生成 1~100 数字</p>
+        <input type="number" id="num" placeholder="输入你猜的数字">
+        <br>
+        <button onclick="guess()">开始猜测</button>
+        <p id="tip">快来猜猜看吧！</p>
+    </div>
+
+<script>
+// 1. 生成1-100随机数
+let randomNum = Math.floor(Math.random()*100)+1;
+
+function guess(){
+    // 2. 获取输入框数字
+    let userNum = document.getElementById('num').value;
+    let tip = document.getElementById('tip');
+
+    if(userNum == ""){
+        tip.innerText = "请输入数字！";
+        return;
+    }
+
+    // 3. 判断逻辑
+    if(userNum > randomNum){
+        tip.innerText = "太大啦，往小猜猜";
+    }else if(userNum < randomNum){
+        tip.innerText = "太小啦，往大猜猜";
+    }else{
+        tip.innerText = "🎉恭喜你猜对了！";
+    }
+}
+</script>
+</body>
+</html>
